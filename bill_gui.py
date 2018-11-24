@@ -21,7 +21,8 @@ lbl_path=tkinter.Label(wdow,width=50)
 but_brow=tkinter.Button(wdow,width=20)
 
 #布局路径标签和浏览按钮
-lbl_path.pack();but_brow.pack()
+lbl_path.pack()
+but_brow.pack()
 
 
 
