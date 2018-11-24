@@ -18,4 +18,11 @@ wdow=tkinter.Tk()
 #标签，显示数据文件存储的路径
 lbl_path=tkinter.Label(wdow,width=50)
 #浏览按钮，用于选择数据文件的存储路径
-but_brow=tkinter.Button(wdow,width=20,hight=2)
+but_brow=tkinter.Button(wdow,width=20)
+
+#布局路径标签和浏览按钮
+lbl_path.pack();but_brow.pack()
+
+
+
+tkinter.mainloop()
