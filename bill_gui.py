@@ -11,6 +11,8 @@ import xlrd
 import xlwt
 import os
 import tkinter.filedialog
+import time
+import xlutils3
 
 #绘制gui界面
 
@@ -56,6 +58,19 @@ but_brow=tkinter.Button(wdow,
         font=('Arial',12),
         command=open_dialog).place(x=580,y=20,anchor='ne')
 
+#在窗口显示当前日期和时间
+vartime=tkinter.StringVar()
+
+def get_now():
+    vartime.set(time.strftime("%Y-%m-%d %H:%M:%S",time.localtime()))
+    wdow.after(1000,get_now)
+
+time_now_lbl=tkinter.Label(wdow,
+            textvariable=vartime,
+            font=('Arial',12),
+            width=22,height=2).place(x=20,y=90)
+get_now()
+
 '''接收录入的发票信息，
 当录入了发票代码和发票号码后，可以点击验证按钮，验证新数据与旧数据是否存在重复。'''
 
@@ -66,7 +81,7 @@ but_brow=tkinter.Button(wdow,
 #录入发票号码和发票代码，并验证是否与前期数据重复，要求发票号码和发票号码均要填写。
 #发票代码的标签
 wi=30
-fix=40
+fix=60
 daima_bill_lbl=tkinter.Label(wdow,
                 text="发票代码：",
                 font=('Arial',12),
@@ -156,10 +171,42 @@ status_bill_input=tkinter.Entry(wdow,
                                font=('Arial',12),
                                width=wi).place(x=180,y=410+fix)
 
+#函数save_bill的功能是将上述输入框中填写的数据保存到所选路径下的电子表格文件中。
+def save_bill():
+
+    #要写入的数据赋值
+    dama_bill=daima_bill_input.get()
+    haoma_bill=haoma_bill_input.get()
+    date_bill=date_bill_input.get()
+    people_bill=people_bill_input.get()
+    department_bill=department_bill_input.get()
+    money_bill=money_bill_input.get()
+    month_voucher=month_voucher_input.get()
+    NO_voucher=NO_voucher_input.get()
+    status_bill=status_bill_input.get()
+    save_time=time.strftime("%Y-%m-%d %H:%M:%S",time.localtime())
+
+    #以列表的形式缓存要写入的数据
+    bill_dat=[dama_bill,haoma_bill,date_bill,people_bill,department_bill,money_bill,month_voucher,
+              NO_voucher,status_bill,save_time]
+    #按照浏览的路径打开Excel文件
+    excel_fil=xlrd.open_workbook(path_text.get(),formatting_info=True)
+    #复制已打开文件中的数据
+    excel_dat=xlutils3.copy.copy(excel_fil)
+    #选择要写入的工作薄
+    sheet_no=excel_dat.get_sheet(0)
+
+    for col in len(bill_dat):
+        sheet_no.write(1,col+1,bill_dat[col])
+
+    excel_fil.save()
+
+
 #提交信息按钮
 commit_butt=tkinter.Button(wdow,
                         text='提交',
                         font=('Arial',12),
+                        command=save_bill,
                         width=10,height=2).place(x=250,y=550)
 
 tkinter.mainloop()
