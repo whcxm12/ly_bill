@@ -13,6 +13,8 @@ import os
 import tkinter.filedialog
 import time
 import xlutils3
+import pypyodbc
+import xlutils3.copy
 
 #绘制gui界面
 
@@ -30,7 +32,7 @@ wdow.geometry("600x670+300+0")
 def get_path_data():
         path_text_path = os.path.abspath('.') + '\\bill_data\\path_data'
         fil = open(path_text_path, mode='r')
-        return fil.read()
+        return fil.read().strip()
         fil.close()
 
 # 存储路径的变量
@@ -87,7 +89,9 @@ daima_bill_lbl=tkinter.Label(wdow,
                 font=('Arial',12),
                 width=14,height=2).place(x=20,y=80+fix)
 #发票代码的输入框
-diama_bill_input=tkinter.Entry(wdow,
+daima_bill=tkinter.StringVar()
+daima_bill_input=tkinter.Entry(wdow,
+                textvariable=daima_bill,
                 font=('Arial',12),
                 width=wi).place(x=180,y=90+fix)
 
@@ -97,8 +101,10 @@ haoma_bill_lbl=tkinter.Label(wdow,
                 font=('Arial', 12),
                 width=14, height=2).place(x=20,y=120+fix)
 #发票号码的输入框
+haoma_bill=tkinter.StringVar()
 haoma_bill_input=tkinter.Entry(wdow,
                 font=('Arial',12),
+                textvariable=haoma_bill,
                 width=wi).place(x=180,y=130+fix)
 
 #发票日期的标签
@@ -107,8 +113,10 @@ date_bill_lbl=tkinter.Label(wdow,
                 font=('Arial', 12),
                 width=14, height=2).place(x=20,y=160+fix)
 #发票日期的输入框
+date_bill=tkinter.StringVar()
 date_bill_input=tkinter.Entry(wdow,
                 font=('Arial',12),
+                textvariable=date_bill,
                 width=wi).place(x=180,y=170+fix)
 
 #报销人的标签
@@ -117,9 +125,11 @@ people_bill_lbl=tkinter.Label(wdow,
                             font=('Arial', 12),
                             width=14, height=2).place(x=20,y=200+fix)
 #报销人的输入框
+people_bill=tkinter.StringVar()
 people_bill_input=tkinter.Entry(wdow,
-                              font=('Arial',12),
-                              width=wi).place(x=180,y=210+fix)
+                font=('Arial',12),
+                textvariable=people_bill,
+                width=wi).place(x=180,y=210+fix)
 
 #部门的标签
 department_bill_lbl=tkinter.Label(wdow,
@@ -127,8 +137,10 @@ department_bill_lbl=tkinter.Label(wdow,
                               font=('Arial', 12),
                               width=14, height=2).place(x=20,y=240+fix)
 #部门的输入框
+department_bill=tkinter.StringVar()
 department_bill_input=tkinter.Entry(wdow,
                                 font=('Arial',12),
+                                textvariable=department_bill,
                                 width=wi).place(x=180,y=250+fix)
 
 #发票金额的标签
@@ -137,9 +149,11 @@ money_bill_lbl=tkinter.Label(wdow,
                                   font=('Arial', 12),
                                   width=14, height=2).place(x=20,y=280+fix)
 #发票金额的输入框
+money_bill=tkinter.StringVar()
 money_bill_input=tkinter.Entry(wdow,
-                                    font=('Arial',12),
-                                    width=wi).place(x=180,y=290+fix)
+                            font=('Arial',12),
+                            textvariable=money_bill,
+                            width=wi).place(x=180,y=290+fix)
 
 #凭证月份的标签
 month_voucher_lbl=tkinter.Label(wdow,
@@ -147,9 +161,11 @@ month_voucher_lbl=tkinter.Label(wdow,
                                   font=('Arial', 12),
                                   width=14, height=2).place(x=20,y=320+fix)
 #凭证月份的输入框
+month_voucher=tkinter.StringVar()
 month_voucher_input=tkinter.Entry(wdow,
-                                    font=('Arial',12),
-                                    width=wi).place(x=180,y=330+fix)
+                                font=('Arial',12),
+                                textvariable=month_voucher,
+                                width=wi).place(x=180,y=330+fix)
 
 #凭证号的标签
 NO_voucher_lbl=tkinter.Label(wdow,
@@ -157,9 +173,11 @@ NO_voucher_lbl=tkinter.Label(wdow,
                                   font=('Arial', 12),
                                   width=14, height=2).place(x=20,y=360+fix)
 #凭证号的输入框
+NO_voucher=tkinter.StringVar()
 NO_voucher_input=tkinter.Entry(wdow,
-                                    font=('Arial',12),
-                                    width=wi).place(x=180,y=370+fix)
+                            font=('Arial',12),
+                            textvariable=NO_voucher,
+                            width=wi).place(x=180,y=370+fix)
 
 #发票状态标签
 status_bill_lbl=tkinter.Label(wdow,
@@ -167,39 +185,43 @@ status_bill_lbl=tkinter.Label(wdow,
                 font=('Arial',12),
                 width=14,height=2).place(x=20,y=400+fix)
 #发票状态输入框
+status_bill=tkinter.StringVar()
 status_bill_input=tkinter.Entry(wdow,
-                               font=('Arial',12),
-                               width=wi).place(x=180,y=410+fix)
+                            font=('Arial',12),
+                            textvariable=status_bill,
+                            width=wi).place(x=180,y=410+fix)
 
 #函数save_bill的功能是将上述输入框中填写的数据保存到所选路径下的电子表格文件中。
 def save_bill():
-
-    #要写入的数据赋值
-    dama_bill=daima_bill_input.get()
-    haoma_bill=haoma_bill_input.get()
-    date_bill=date_bill_input.get()
-    people_bill=people_bill_input.get()
-    department_bill=department_bill_input.get()
-    money_bill=money_bill_input.get()
-    month_voucher=month_voucher_input.get()
-    NO_voucher=NO_voucher_input.get()
-    status_bill=status_bill_input.get()
+    #获取当前日期和时间并按照“yyyy-mm-dd hh:mm:ss”的格式保存
     save_time=time.strftime("%Y-%m-%d %H:%M:%S",time.localtime())
 
     #以列表的形式缓存要写入的数据
-    bill_dat=[dama_bill,haoma_bill,date_bill,people_bill,department_bill,money_bill,month_voucher,
-              NO_voucher,status_bill,save_time]
+    bill_dat=[daima_bill.get().strip(),haoma_bill.get().strip(),date_bill.get().strip(),
+              people_bill.get().strip(),department_bill.get().strip(),
+              money_bill.get().strip(),month_voucher.get().strip(),NO_voucher.get().strip(),
+              status_bill.get().strip(),save_time]
     #按照浏览的路径打开Excel文件
     excel_fil=xlrd.open_workbook(path_text.get(),formatting_info=True)
+    #获取文件中的所有表格
+    excel_fil_sheets=excel_fil.sheet_names()
+    #获取第一个表格
+    excel_fil_sheetNo=excel_fil.sheet_by_name(excel_fil_sheets[0])
+    #获取表格中已存在的数据行数
+    rows_old=excel_fil_sheetNo.nrows
+
     #复制已打开文件中的数据
     excel_dat=xlutils3.copy.copy(excel_fil)
     #选择要写入的工作薄
-    sheet_no=excel_dat.get_sheet(0)
+    excel_dat_sheet=excel_dat.get_sheet(0)
 
-    for col in len(bill_dat):
-        sheet_no.write(1,col+1,bill_dat[col])
+    print(path_text.get())
 
-    excel_fil.save()
+    for col in range(len(bill_dat)):
+        excel_dat_sheet.write(rows_old,col,bill_dat[col])
+
+    excel_dat.save(path_text.get())
+
 
 
 #提交信息按钮
