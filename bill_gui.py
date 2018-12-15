@@ -23,7 +23,7 @@ wdow=tkinter.Tk()
 #设置窗口标题
 wdow.title("发票信息管理")
 #设置窗口大小为宽600，长670，设置显示位置为左上角为屏幕的(300,0)位置
-wdow.geometry("600x670+300+0")
+wdow.geometry("620x670+300+0")
 
 '''用与选择数据文件的位置。程序开始时默认显示使用上次使用的文件位置。
 可以点浏览按钮选择新的文件位置，并将新的文件位置保存到path_data中，以便于下次使用。'''
@@ -74,7 +74,8 @@ time_now_lbl=tkinter.Label(wdow,
 get_now()
 
 '''接收录入的发票信息，
-当录入了发票代码和发票号码后，可以点击验证按钮，验证新数据与旧数据是否存在重复。'''
+当录入了发票代码和发票号码后，可以点击验证按钮，验证新数据与旧数据是否存在重复。
+如果不重复，则可以提交数据，如果重复，则提示数据有重复，不能提交数据。'''
 
 '''#要填写的字段：发票代码	发票号码	发票日期（date）	报销人	报销人部门
 	发票金额	凭证月份*	凭证号*	状态(已检查)	提交日期（当前日期时间)
@@ -82,7 +83,7 @@ get_now()
 
 #录入发票号码和发票代码，并验证是否与前期数据重复，要求发票号码和发票号码均要填写。
 #发票代码的标签
-wi=30
+wi=27
 fix=60
 daima_bill_lbl=tkinter.Label(wdow,
                 text="发票代码：",
@@ -106,6 +107,13 @@ haoma_bill_input=tkinter.Entry(wdow,
                 font=('Arial',12),
                 textvariable=haoma_bill,
                 width=wi).place(x=180,y=130+fix)
+
+#查重按钮，检查发票代码和发票号码是否同时重复。
+
+norepeat_butt=tkinter.Button(wdow,
+            text='检查重复',
+            font=('Arial',12),
+            width=8,height=1).place(x=180+wi+292,y=130+fix-6)
 
 #发票日期的标签
 date_bill_lbl=tkinter.Label(wdow,
@@ -201,14 +209,16 @@ def save_bill():
               people_bill.get().strip(),department_bill.get().strip(),
               money_bill.get().strip(),month_voucher.get().strip(),NO_voucher.get().strip(),
               status_bill.get().strip(),save_time]
+    # bill_dat=[save_time]
     #按照浏览的路径打开Excel文件
-    excel_fil=xlrd.open_workbook(path_text.get(),formatting_info=True)
+    excel_fil=xlrd.open_workbook(path_text.get())
     #获取文件中的所有表格
-    excel_fil_sheets=excel_fil.sheet_names()
+    # excel_fil_sheets=excel_fil.sheet_names()
     #获取第一个表格
-    excel_fil_sheetNo=excel_fil.sheet_by_name(excel_fil_sheets[0])
+    excel_fil_sheetNo=excel_fil.sheet_by_index(0)
     #获取表格中已存在的数据行数
     rows_old=excel_fil_sheetNo.nrows
+    print(rows_old)
 
     #复制已打开文件中的数据
     excel_dat=xlutils3.copy.copy(excel_fil)
@@ -216,6 +226,7 @@ def save_bill():
     excel_dat_sheet=excel_dat.get_sheet(0)
 
     print(path_text.get())
+    print(bill_dat)
 
     for col in range(len(bill_dat)):
         excel_dat_sheet.write(rows_old,col,bill_dat[col])
