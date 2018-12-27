@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="49990777-93c9-4304-ae0d-e6208a0cc8d4" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bill_data/aa.xls" beforeDir="false" afterPath="$PROJECT_DIR$/bill_data/aa.xls" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bill_data/b1.xls" beforeDir="false" afterPath="$PROJECT_DIR$/bill_data/b1.xls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bill_data/path_data" beforeDir="false" afterPath="$PROJECT_DIR$/bill_data/path_data" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bill_gui.py" beforeDir="false" afterPath="$PROJECT_DIR$/bill_gui.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,15 +15,15 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/ly_bill_gui$sy_writeExcel.coverage" NAME="sy_writeExcel Coverage Results" MODIFIED="1544662667462" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bill_data" />
-    <SUITE FILE_PATH="coverage/ly_bill_gui$bill_gui.coverage" NAME="bill_gui Coverage Results" MODIFIED="1545814398274" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ly_bill_gui$bill_gui.coverage" NAME="bill_gui Coverage Results" MODIFIED="1545910793170" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
       <file leaf-file-name="bill_gui.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/bill_gui.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="207">
-              <caret line="404" column="50" lean-forward="true" selection-start-line="404" selection-start-column="50" selection-end-line="404" selection-end-column="50" />
+            <state relative-caret-position="220">
+              <caret line="424" column="50" selection-start-line="424" selection-start-column="50" selection-end-line="424" selection-end-column="50" />
               <folding>
                 <element signature="e#162#176#0" expanded="true" />
               </folding>
@@ -74,16 +72,17 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1591" />
+    <option name="x" value="-9" />
     <option name="y" value="-9" />
     <option name="width" value="1618" />
-    <option name="height" value="918" />
+    <option name="height" value="870" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -100,7 +99,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -192,7 +190,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1591" y="-9" width="1618" height="918" extended-state="6" />
+    <frame x="-9" y="-9" width="1618" height="870" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32729805" />
@@ -200,12 +198,11 @@
       <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49870467" weight="0.32729805" />
       <window_info anchor="bottom" id="Python Console" order="15" weight="0.35654595" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32729805" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32686567" />
       <window_info anchor="bottom" id="Terminal" order="13" weight="0.32729805" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49852508" visible="true" weight="0.30699483" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49852508" visible="true" weight="0.16839378" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" weight="0.32890856" />
       <window_info anchor="right" id="Database" order="3" />
-      <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="right" id="SciView" order="4" weight="0.32966322" />
       <window_info id="Structure" order="1" sideWeight="0.5014749" side_tool="true" weight="0.26360103" />
       <window_info id="Favorites" order="2" sideWeight="0.5014749" side_tool="true" weight="0.26360103" />
@@ -214,11 +211,12 @@
       <window_info anchor="bottom" id="运行" order="9" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="调试" order="12" />
-      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -233,6 +231,16 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/bill_gui.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="10504">
+          <caret line="404" column="50" lean-forward="true" selection-start-line="404" selection-start-column="50" selection-end-line="404" selection-end-column="50" />
+          <folding>
+            <element signature="e#162#176#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/bill_gui.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="7826">
@@ -402,8 +410,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/bill_gui.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="404" column="50" lean-forward="true" selection-start-line="404" selection-start-column="50" selection-end-line="404" selection-end-column="50" />
+        <state relative-caret-position="220">
+          <caret line="424" column="50" selection-start-line="424" selection-start-column="50" selection-end-line="424" selection-end-column="50" />
           <folding>
             <element signature="e#162#176#0" expanded="true" />
           </folding>

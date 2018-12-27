@@ -418,14 +418,18 @@ def inport():
 
         errlist = []
 
-        for ro in range(len(indata) - 1):
+        for ro in range(len(indata) - 1):   #逐行获取要导入的数据
+            #通过数据的个数，是否为重复、是否有数值，这三个条件，来判断是否是有问题的数据，是否可以写入数据文件
             if len(indata[ro + 1]) == mocols and notrepeat(indata[ro + 1][0], indata[ro + 1][1]) and feikong(
                     *indata[ro + 1]):
-
+                #逐个字段的写入数据，并判断如果是最后一个字段，则要填写当前的时间。
                 for cl in range(mocols):
                     # print("正在写入数据！")
                     # print(indata[ro + 1])
-                    modata_sheet.write(morows, cl, indata[ro + 1][cl])
+                    if cl!=mocols-1:
+                        modata_sheet.write(morows, cl, indata[ro + 1][cl])
+                    else:
+                        modata_sheet.write(morows,cl,time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
                 morows += 1
             # if len(indata[ro+1]) and notrepeat(indata[ro+1][0],indata[ro+1][1]):
             #     print(indata[ro+1])
